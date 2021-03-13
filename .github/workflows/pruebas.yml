@@ -60,7 +60,7 @@ jobs:
           TO_BRANCH: "dev"
   automerge:
     name: Automerge
-    needs: job1, sync-branches
+    needs: sync-branches
     runs-on: ubuntu-latest
     steps:
       - name: automerge
