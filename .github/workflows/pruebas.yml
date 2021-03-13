@@ -2,10 +2,12 @@ name: Pruebas unitarias
 on:
   push:
     branches: [ master ]
+
 jobs:
   job1:
     name: Pruebas
     runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'Mezclar')"
     outputs:
       salida: ${{ steps.imprimir.outputs.respuesta }}
     steps:
@@ -37,3 +39,23 @@ jobs:
       run: |
           coverage run -m unittest tests/test_persona.py
           coverage report -m
+  sync-branches:
+    runs-on: ubuntu-latest
+    needs: job1
+    if: success()
+    name: Syncing branches
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Opening pull request
+        id: pull
+        uses: tretuna/sync-branches@1.2.0
+        with:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          FROM_BRANCH: "master"
+          TO_BRANCH: "dev"
+  
