@@ -2,6 +2,12 @@ name: Pruebas unitarias
 on:
   push:
     branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to undo commit'
+        required: true
+        default: 'master' 
 jobs:
   job1:
     name: Pruebas
