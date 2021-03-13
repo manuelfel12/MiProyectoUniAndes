@@ -40,6 +40,7 @@ class Coleccion():
            album = session.query(Album).filter(Album.id == album_id).first()
            session.delete(album)
            session.commit()
+           #print(album)
            return True
        except:
            return False
