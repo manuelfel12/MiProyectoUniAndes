@@ -14,7 +14,6 @@ class Coleccion():
        if len(busqueda) == 0:
            album = Album(titulo=titulo, ano=anio, descripcion=descripcion, medio=medio)
            session.add(album)
-           #print(album)
            session.commit()
            return True
        else:
