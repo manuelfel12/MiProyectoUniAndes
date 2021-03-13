@@ -13,7 +13,6 @@ class Coleccion():
        busqueda = session.query(Album).filter(Album.titulo == titulo).all()
        if len(busqueda) == 0:
            album = Album(titulo=titulo, ano=anio, descripcion=descripcion, medio=medio)
-           #print(album)
            session.add(album)
            session.commit()
            return True
@@ -42,7 +41,6 @@ class Coleccion():
            album = session.query(Album).filter(Album.id == album_id).first()
            session.delete(album)
            session.commit()
-           #print(album)
            return True
        except:
            return False
