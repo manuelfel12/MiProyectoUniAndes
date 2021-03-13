@@ -30,6 +30,7 @@ class Coleccion():
            album.ano = anio
            album.descripcion = descripcion
            album.medio = medio
+           #print(album)
            session.commit()
            return True
        else:
@@ -40,6 +41,7 @@ class Coleccion():
            album = session.query(Album).filter(Album.id == album_id).first()
            session.delete(album)
            session.commit()
+           #print(album)
            return True
        except:
            return False
