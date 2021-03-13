@@ -30,6 +30,7 @@ class Coleccion():
            album.ano = anio
            album.descripcion = descripcion
            album.medio = medio
+           print(album)
            session.commit()
            return True
        else:
